@@ -59,7 +59,7 @@ var WeatherApp = React.createClass({
 		}
 
 		return (
-			<div style={weatherHeader}>
+			<div style={weatherHeader} className="wather-container">
 			<SearchField ref="searchSection" onNewSearch={this.handleSearch} />
 			{(() => {
 				if (this.state.weather) {
