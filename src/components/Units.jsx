@@ -19,8 +19,8 @@ var Units = React.createClass({
 		return (
 			<div style={paddingUnit} className="pull-right">
 			<div className="btn-group" role="group">
-			<button style={this.props.unit == 'metric' ? backgroundUnit: null} className="btn btn-default" onClick={this.tempClick}>°C</button>
-			<button style={this.props.unit == 'imperial' ?backgroundUnit: null} className="btn btn-default" onClick={this.tempClick}>°F</button>
+			<button style={this.props.unit == 'metric' ? backgroundUnit: null} className="btn btn-default unit-c" onClick={this.tempClick}>°C</button>
+			<button style={this.props.unit == 'imperial' ?backgroundUnit: null} className="btn btn-default unit-f" onClick={this.tempClick}>°F</button>
 			</div>
 			</div>
 			);
