@@ -26,7 +26,7 @@ var Units = React.createClass({
             fClass += ' selected';
 
 		return (
-            <div className="btn-group" role="group">
+            <div className="btn-group pull-right" role="group">
                 <button className={cClass} onClick={this.tempClick}>°C</button>
                 <button className={fClass} onClick={this.tempClick}>°F</button>
             </div>
