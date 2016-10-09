@@ -23,7 +23,7 @@ var tempInfo = {
 }
 
 var descriptionInfo = {
-	color: '#f4f4f4',
+	color: '',
 }
 
 var tempEval = function(unit) {
