@@ -36,7 +36,7 @@ var SearchField = React.createClass({
 				<input style={searchSection} className="form-control rw-search-field" ref="searchInput" placeholder="Search City" />
 			</div>
 			<div style={fieldWrapper} className="col-xs-3">
-				<button style={searchButton} className="btn btn-primary btn-block">Search</button>
+				<button style={searchButton} className="btn btn-primary btn-block rw-search-btn">Search</button>
 				</div>	
 			</form>
 			</div>
