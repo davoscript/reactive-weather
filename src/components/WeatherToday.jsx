@@ -57,11 +57,11 @@ var WeatherToday = React.createClass({
                     </div>
                 </div>
                 <div style={weatherToday} className="col-xs-12 rw-today">
-                    <div className="col-sm-6 pull-left rw-today-city">
+                    <div className="col-sm-6 rw-today-city">
                         <h5>{this.props.cityName}, {this.props.countryCode}</h5>
                         <small>Today at {this.props.date.substring(11, 16)}</small>
                     </div>
-                    <div className="col-sm-6 pull-right">
+                    <div className="col-sm-6">
                         <Units changeTemp={this.changeTemp} unit={this.props.units} />
                     </div>
                 </div>
