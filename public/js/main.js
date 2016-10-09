@@ -25439,7 +25439,7 @@ var CityField = React.createClass({
 	render: function () {
 
 		return React.createElement("input", {
-			className: "form-control",
+			className: "form-control rw-city-field",
 			placeholder: "City,Country",
 			value: this.state.cityName });
 	}
@@ -25488,19 +25488,19 @@ var SearchField = React.createClass({
 				{ className: 'col-md-12' },
 				React.createElement(
 					'form',
-					{ onSubmit: this.handleSubmit },
+					{ onSubmit: this.handleSubmit, className: 'rw-search-form clearfix' },
 					React.createElement(
 						'div',
-						{ style: fieldWrapper, className: 'col-xs-9' },
-						React.createElement('input', { style: searchSection, className: 'form-control', ref: 'searchInput', placeholder: 'Search City' })
+						{ style: fieldWrapper, className: 'col-xs-10' },
+						React.createElement('input', { style: searchSection, className: 'form-control input-lg rw-search-field', ref: 'searchInput', placeholder: 'Search City' })
 					),
 					React.createElement(
 						'div',
-						{ style: fieldWrapper, className: 'col-xs-3' },
+						{ style: fieldWrapper, className: 'col-xs-2 text-right' },
 						React.createElement(
 							'button',
-							{ style: searchButton, className: 'btn btn-primary btn-block' },
-							'Search'
+							{ className: 'btn btn-default btn-lg rw-search-btn' },
+							'Go'
 						)
 					)
 				)
@@ -25516,42 +25516,45 @@ module.exports = SearchField;
 var React = require('react');
 
 var backgroundUnit = {
-	background: '#2E6FA6',
-	color: '#ffffff'
+  background: '#2E6FA6',
+  color: '#ffffff'
 };
 
 var paddingUnit = {
-	paddingRight: '10px'
+  paddingRight: '10px'
 };
 
 var Units = React.createClass({
-	displayName: 'Units',
+  displayName: 'Units',
 
 
-	tempClick: function (e) {
-		this.props.changeTemp(e.target.innerHTML);
-	},
+  tempClick: function (e) {
+    this.props.changeTemp(e.target.innerHTML);
+  },
 
-	render: function () {
-		return React.createElement(
-			'div',
-			{ style: paddingUnit, className: 'pull-right' },
-			React.createElement(
-				'div',
-				{ className: 'btn-group', role: 'group' },
-				React.createElement(
-					'button',
-					{ style: this.props.unit == 'metric' ? backgroundUnit : null, className: 'btn btn-default', onClick: this.tempClick },
-					'\xB0C'
-				),
-				React.createElement(
-					'button',
-					{ style: this.props.unit == 'imperial' ? backgroundUnit : null, className: 'btn btn-default', onClick: this.tempClick },
-					'\xB0F'
-				)
-			)
-		);
-	}
+  render: function () {
+
+    var cClass = 'btn btn-default unit-c';
+    var fClass = 'btn btn-default unit-f';
+
+    if (this.props.unit == 'metric') cClass += ' selected';
+    if (this.props.unit == 'imperial') fClass += ' selected';
+
+    return React.createElement(
+      'div',
+      { className: 'btn-group pull-right', role: 'group' },
+      React.createElement(
+        'button',
+        { className: cClass, onClick: this.tempClick },
+        '\xB0C'
+      ),
+      React.createElement(
+        'button',
+        { className: fClass, onClick: this.tempClick },
+        '\xB0F'
+      )
+    );
+  }
 
 });
 
@@ -25615,7 +25618,7 @@ var WeatherApp = React.createClass({
 
 		return React.createElement(
 			'div',
-			{ style: weatherHeader },
+			{ style: weatherHeader, className: 'rw-container' },
 			React.createElement(SearchField, { ref: 'searchSection', onNewSearch: this.handleSearch }),
 			(() => {
 				if (this.state.weather) {
@@ -25694,7 +25697,7 @@ var WeatherFuture = React.createClass({
 				{ className: 'col-xs-12' },
 				React.createElement(
 					'table',
-					{ style: tableStyle, className: 'table table-striped text-center' },
+					{ style: tableStyle, className: 'table table-striped table-hover rw-weather-table' },
 					React.createElement(
 						'thead',
 						null,
@@ -25703,17 +25706,17 @@ var WeatherFuture = React.createClass({
 							null,
 							React.createElement(
 								'th',
-								{ className: 'col-md-3 text-center' },
+								{ className: 'col-md-3 text-left rw-day' },
 								'Day'
 							),
 							React.createElement(
 								'th',
-								{ className: 'col-md-3 text-center' },
+								{ className: 'col-md-3 text-center rw-temperature' },
 								'Temperature'
 							),
 							React.createElement(
 								'th',
-								{ className: 'col-md-3 text-center' },
+								{ className: 'col-md-3 text-right rw-description' },
 								'Description'
 							)
 						)
@@ -25753,24 +25756,24 @@ var WeatherFutureItem = React.createClass({
 	render: function () {
 		return React.createElement(
 			'tr',
-			null,
+			{ className: 'rw-future-item' },
 			React.createElement(
 				'td',
-				null,
+				{ className: 'rw-fi-date text-left' },
 				this.props.date
 			),
 			React.createElement(
 				'td',
-				null,
+				{ className: 'rw-fi-temperature text-center' },
 				this.props.temp,
 				' ',
-				tempEval(this.props.units)
+				tempEval(this.props.units),
+				' ',
+				React.createElement('img', { height: '30px', src: showIcon(this.props.icon) })
 			),
 			React.createElement(
 				'td',
-				null,
-				React.createElement('img', { height: '20px', src: showIcon(this.props.icon) }),
-				' ',
+				{ className: 'rw-fi-description text-right' },
 				this.props.description
 			)
 		);
@@ -25805,7 +25808,7 @@ var tempInfo = {
 };
 
 var descriptionInfo = {
-	color: '#f4f4f4'
+	color: ''
 };
 
 var tempEval = function (unit) {
@@ -25834,11 +25837,34 @@ var WeatherToday = React.createClass({
 			{ className: 'row' },
 			React.createElement(
 				'div',
-				{ style: weatherToday, className: 'col-md-12' },
-				React.createElement(Units, { changeTemp: this.changeTemp, unit: this.props.units }),
+				{ className: 'col-xs-12 rw-today-info' },
 				React.createElement(
 					'div',
-					{ style: cityStyle, className: 'col-xs-9 col-md-4' },
+					{ className: 'col-xs-6 text-right' },
+					React.createElement(
+						'h1',
+						null,
+						Math.round(this.props.temperature),
+						tempEval(this.props.units)
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'col-xs-6 text-left' },
+					React.createElement('img', { src: showIcon(this.props.icon) }),
+					React.createElement(
+						'p',
+						{ style: descriptionInfo },
+						this.props.description
+					)
+				)
+			),
+			React.createElement(
+				'div',
+				{ style: weatherToday, className: 'col-xs-12 rw-today' },
+				React.createElement(
+					'div',
+					{ className: 'col-sm-6 rw-today-city' },
 					React.createElement(
 						'h5',
 						null,
@@ -25847,7 +25873,7 @@ var WeatherToday = React.createClass({
 						this.props.countryCode
 					),
 					React.createElement(
-						'p',
+						'small',
 						null,
 						'Today at ',
 						this.props.date.substring(11, 16)
@@ -25855,19 +25881,8 @@ var WeatherToday = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ style: weatherInfoStyle, className: 'col-xs-12 text-center' },
-					React.createElement('img', { src: showIcon(this.props.icon) }),
-					React.createElement(
-						'h1',
-						{ style: tempInfo },
-						Math.round(this.props.temperature),
-						tempEval(this.props.units)
-					),
-					React.createElement(
-						'p',
-						{ style: descriptionInfo },
-						this.props.description
-					)
+					{ className: 'col-sm-6' },
+					React.createElement(Units, { changeTemp: this.changeTemp, unit: this.props.units })
 				)
 			)
 		);
@@ -25881,7 +25896,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var WeatherApp = require('./components/WeatherApp.jsx');
 
-ReactDOM.render(React.createElement(WeatherApp, { appBackground: '#000000' }), document.getElementById('reactive-weather'));
+ReactDOM.render(React.createElement(WeatherApp, null), document.getElementById('reactive-weather'));
 
 },{"./components/WeatherApp.jsx":177,"react":172,"react-dom":29}],182:[function(require,module,exports){
 var Fetch = require('whatwg-fetch');
