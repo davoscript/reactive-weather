@@ -21,9 +21,9 @@ var Units = React.createClass({
         var fClass = 'btn btn-default unit-f';
 
         if(this.props.unit == 'metric')
-            cClass += ' active';
+            cClass += ' selected';
         if(this.props.unit == 'imperial')
-            fClass += ' active';
+            fClass += ' selected';
 
 		return (
             <div className="btn-group" role="group">
