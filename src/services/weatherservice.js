@@ -2,7 +2,7 @@ var Fetch = require('whatwg-fetch');
 var baseUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=';
 
 // Add Your API Key
-var apiKey = 'yourApiKey';
+var apiKey = 'c403f9ef8fb5f14fc34140570cb06716';
 
 var weatherService = {
 	get: function(url) {
