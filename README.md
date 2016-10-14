@@ -26,7 +26,7 @@ git clone https://github.com/Bobeta/reactive-weather.git
 then run (required to have Node installed):
 
 ```
-npm install
+npm -g browserify && npm install
 ```
 
 Create your free Open Weather Map API key by signing up on [**their website**](https://openweathermap.org/) (it can take up to an hour before the API key starts working).
