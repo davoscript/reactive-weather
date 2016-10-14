@@ -7,7 +7,9 @@
     "start": "watchify src/main.jsx -v -t [ babelify --presets [ react ] ] -o public/js/main.js",
     "bootstrap": "node-sass --include-path scss bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss public/css/bootstrap.css --output-style compressed",
     "browser-sync": "browser-sync start --server 'public' --files 'public/, src/'",
-    "serve": "parallelshell 'npm run start' 'npm run browser-sync'"
+    "serve": "parallelshell 'npm run start' 'npm run browser-sync'",
+    "bundle": "browserify src/main.jsx -v -t [ babelify --presets [ react ] ] -o public/dist/main.js",
+    "dist": "npm run bundle && babili public/dist/main.js -o public/dist/main.min.js --no-comments"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,7 @@
     "babel-eslint": "^6.0.4",
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.3.0",
+    "babili": "0.0.7",
     "browser-sync": "^2.13.0",
     "eslint": "^2.12.0",
     "eslint-plugin-react": "^5.2.0",
