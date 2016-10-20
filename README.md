@@ -88,6 +88,11 @@ Browser-sync functionality is already included out of the box, just run the foll
 npm run browser-sync
 ```
 
+You can run the following command to generate js files that excludes `react` & `react-dom` dependencies:
+```
+npm run dist
+```
+
 ## Contributing
 
 You are welcome to contribute to the project if you like, please read [**contributing guide**](CONTRIBUTING.md).
