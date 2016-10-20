@@ -27,7 +27,7 @@ git clone https://github.com/Bobeta/reactive-weather.git
 then run (required to have Node installed):
 
 ```
-npm install
+npm -g browserify && npm install
 ```
 
 Create your free Open Weather Map API key by signing up on [**their website**](https://openweathermap.org/) (it can take up to an hour before the API key starts working).
@@ -87,6 +87,11 @@ npm run bootstrap
 Browser-sync functionality is already included out of the box, just run the following command to see your changes being made live:
 ```
 npm run browser-sync
+```
+
+You can run the following command to generate js files that excludes `react` & `react-dom` dependencies:
+```
+npm run dist
 ```
 
 ## Contributing
